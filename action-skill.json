@@ -1,0 +1,4924 @@
+{
+  "name": "Flower Shop Assistant",
+  "type": "action",
+  "counts": {
+    "actions": 12,
+    "intents": 9,
+    "entities": 8,
+    "data_types": 0,
+    "collections": 0,
+    "global_variables": 0
+  },
+  "status": "Available",
+  "language": "en",
+  "skill_id": "bcaf4181-3ae4-410e-b4d1-4187a806aa40",
+  "workspace": {
+    "actions": [
+      {
+        "steps": [
+          {
+            "step": "step_912",
+            "title": "List of Available stores",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Here are our available stores. Pick the one you want!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Toronto",
+                      "value": {
+                        "input": {
+                          "text": "Toronto"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Montreal",
+                      "value": {
+                        "input": {
+                          "text": "Montreal"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Calgary",
+                      "value": {
+                        "input": {
+                          "text": "Calgary"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Vancouver",
+                      "value": {
+                        "input": {
+                          "text": "Vancouver"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "I didn't catch that. Select a valid option:"
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_45330-2",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_912",
+            "next_step": "step_491"
+          },
+          {
+            "step": "step_491",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Our Toronto store is located at 123 Warden Avenue."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_491",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_912"
+                },
+                {
+                  "value": "Toronto",
+                  "from_entity": "entity_45330-2"
+                }
+              ]
+            },
+            "next_step": "step_760"
+          },
+          {
+            "step": "step_760",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Would you also like the operation hours?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": {
+                        "input": {
+                          "text": "Yes"
+                        }
+                      }
+                    },
+                    {
+                      "label": "No",
+                      "value": {
+                        "input": {
+                          "text": "No"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "I'm sorry, I did not catch that, please restate your response."
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-yes-no",
+              "max_tries": 3,
+              "response_collection_behavior": "always_ask"
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_760",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_912"
+                },
+                {
+                  "value": "Toronto",
+                  "from_entity": "entity_45330-2"
+                }
+              ]
+            },
+            "next_step": "step_484"
+          },
+          {
+            "step": "step_484",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Our Toronto store is open Monday to Saturday from 9 am until 6 pm, except statutory holidays."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_484",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_760"
+                },
+                {
+                  "scalar": "yes"
+                }
+              ]
+            },
+            "next_step": "step_938"
+          },
+          {
+            "step": "step_938",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "If you say so!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_938",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_760"
+                },
+                {
+                  "scalar": "no"
+                }
+              ]
+            },
+            "next_step": "step_854"
+          },
+          {
+            "step": "step_854",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Our Montreal store is located at 100 Park Avenue."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_854",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_912"
+                },
+                {
+                  "value": "Montreal",
+                  "from_entity": "entity_45330-2"
+                }
+              ]
+            },
+            "next_step": "step_696"
+          },
+          {
+            "step": "step_696",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Would you also like the operation hours?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": {
+                        "input": {
+                          "text": "Yes"
+                        }
+                      }
+                    },
+                    {
+                      "label": "No",
+                      "value": {
+                        "input": {
+                          "text": "No"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "I'm sorry, I did not catch that, please restate your response."
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-yes-no",
+              "max_tries": 3,
+              "response_collection_behavior": "always_ask"
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_696",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_912"
+                },
+                {
+                  "value": "Montreal",
+                  "from_entity": "entity_45330-2"
+                }
+              ]
+            },
+            "next_step": "step_811"
+          },
+          {
+            "step": "step_811",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Our Montreal store is open Monday to Friday from 9 am until 7 pm, except statutory holidays."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_811",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_696"
+                },
+                {
+                  "scalar": "yes"
+                }
+              ]
+            },
+            "next_step": "step_792"
+          },
+          {
+            "step": "step_792",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "If you say so!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_792",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_696"
+                },
+                {
+                  "scalar": "no"
+                }
+              ]
+            },
+            "next_step": "step_595"
+          },
+          {
+            "step": "step_595",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Our Calgary store is located on the second floor of the Chinook Mall at 6455 Macleod Trail."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_595",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_912"
+                },
+                {
+                  "value": "Calgary",
+                  "from_entity": "entity_45330-2"
+                }
+              ]
+            },
+            "next_step": "step_561"
+          },
+          {
+            "step": "step_561",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Would you also like the operation hours?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": {
+                        "input": {
+                          "text": "Yes"
+                        }
+                      }
+                    },
+                    {
+                      "label": "No",
+                      "value": {
+                        "input": {
+                          "text": "No"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "I'm sorry, I did not catch that, please restate your response."
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-yes-no",
+              "max_tries": 3,
+              "response_collection_behavior": "always_ask"
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_561",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_912"
+                },
+                {
+                  "value": "Calgary",
+                  "from_entity": "entity_45330-2"
+                }
+              ]
+            },
+            "next_step": "step_179"
+          },
+          {
+            "step": "step_179",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Our Calgary store is open Monday to Friday from 9 am until 6 pm, except statutory holidays."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_179",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_561"
+                },
+                {
+                  "scalar": "yes"
+                }
+              ]
+            },
+            "next_step": "step_831"
+          },
+          {
+            "step": "step_831",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "If you say so!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_831",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_561"
+                },
+                {
+                  "scalar": "no"
+                }
+              ]
+            },
+            "next_step": "step_920"
+          },
+          {
+            "step": "step_920",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Our Vancouver store is located at 883 Hastings St."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_920",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_912"
+                },
+                {
+                  "value": "Vancouver",
+                  "from_entity": "entity_45330-2"
+                }
+              ]
+            },
+            "next_step": "step_727"
+          },
+          {
+            "step": "step_727",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Would you also like the operation hours?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": {
+                        "input": {
+                          "text": "Yes"
+                        }
+                      }
+                    },
+                    {
+                      "label": "No",
+                      "value": {
+                        "input": {
+                          "text": "No"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "I'm sorry, I did not catch that, please restate your response."
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-yes-no",
+              "max_tries": 3,
+              "response_collection_behavior": "always_ask"
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_727",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_912"
+                },
+                {
+                  "value": "Vancouver",
+                  "from_entity": "entity_45330-2"
+                }
+              ]
+            },
+            "next_step": "step_990"
+          },
+          {
+            "step": "step_990",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Our Vancouver store is open Monday to Sunday from 10 am until 8:45 pm, except statutory holidays."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_990",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_727"
+                },
+                {
+                  "scalar": "yes"
+                }
+              ]
+            },
+            "next_step": "step_952"
+          },
+          {
+            "step": "step_952",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "If you say so!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_952",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_727"
+                },
+                {
+                  "scalar": "no"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Request Store Location",
+        "action": "action_18443-2",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_18443_intent_38743-2"
+        },
+        "variables": [
+          {
+            "title": "Our Calgary store is open Monday to Friday from 9 am until 6 pm,",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_179",
+            "data_type": "any"
+          },
+          {
+            "title": "Our Toronto store is open Monday to Saturday from 9 am until 6 p",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_484",
+            "data_type": "any"
+          },
+          {
+            "title": "Our Toronto store is located at 123 Warden Avenue.",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_491",
+            "data_type": "any"
+          },
+          {
+            "title": "Would you also like the operation hours?",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_561",
+            "data_type": "yes_no"
+          },
+          {
+            "title": "Our Calgary store is located on the second floor of the Chinook ",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_595",
+            "data_type": "any"
+          },
+          {
+            "title": "Would you also like the operation hours?",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_696",
+            "data_type": "yes_no"
+          },
+          {
+            "title": "Would you also like the operation hours?",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_727",
+            "data_type": "yes_no"
+          },
+          {
+            "title": "Would you also like the operation hours?",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_760",
+            "data_type": "yes_no"
+          },
+          {
+            "title": "If you say so!",
+            "variable": "step_792",
+            "data_type": "any"
+          },
+          {
+            "title": "Our Montreal store is open Monday to Friday from 9 am until 7 pm",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_811",
+            "data_type": "any"
+          },
+          {
+            "title": "If you say so!",
+            "variable": "step_831",
+            "data_type": "any"
+          },
+          {
+            "title": "Our Montreal store is located at 100 Park Avenue.",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_854",
+            "data_type": "any"
+          },
+          {
+            "title": "List of Available stores",
+            "variable": "step_912",
+            "data_type": "any"
+          },
+          {
+            "title": "Our Vancouver store is located at 883 Hastings St.",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_920",
+            "data_type": "any"
+          },
+          {
+            "title": "If you say so!",
+            "variable": "step_938",
+            "data_type": "any"
+          },
+          {
+            "title": "If you say so!",
+            "variable": "step_952",
+            "data_type": "any"
+          },
+          {
+            "title": "Our Vancouver store is open Monday to Sunday from 10 am until 8:",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_990",
+            "data_type": "any"
+          }
+        ],
+        "launch_mode": "learning",
+        "next_action": "fallback",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true,
+          "never_return": false
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_545",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "We periodically have sales, holiday discounts and special deals for special occasions! Choose the occasion to see our offers!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Christmas",
+                      "value": {
+                        "input": {
+                          "text": "Christmas"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Wedding",
+                      "value": {
+                        "input": {
+                          "text": "Wedding"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Mother's Day",
+                      "value": {
+                        "input": {
+                          "text": "Mother's Day"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Valentine's Day",
+                      "value": {
+                        "input": {
+                          "text": "Valentine's Day"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Birthday",
+                      "value": {
+                        "input": {
+                          "text": "Birthday"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Other",
+                      "value": {
+                        "input": {
+                          "text": "Other"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "I didn't catch that. Select a valid option:"
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_19205",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_545",
+            "next_step": "step_116"
+          },
+          {
+            "step": "step_116",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Check out our [Christmas Cheer!](https://hive0.wordbox.intela.io/fechris89/specialdeals) special discount 🎁! All flowers are 40% off from December 1st till January 5th!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_116",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_545"
+                },
+                {
+                  "value": "Christmas",
+                  "from_entity": "entity_19205"
+                }
+              ]
+            },
+            "next_step": "step_985"
+          },
+          {
+            "step": "step_985",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Need special flowers to celebrate one of the happiest days of your life 👰🤵but you don't want to pay the full CAD 125? Our [Happy Weds!](https://hive0.wordbox.intela.io/fechris89/specialdeals) deal got you covered with the bouquets being 50% off from November to March!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_985",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_545"
+                },
+                {
+                  "value": "Wedding",
+                  "from_entity": "entity_19205"
+                }
+              ]
+            },
+            "next_step": "step_992"
+          },
+          {
+            "step": "step_992",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Unfortunately, our [Flowers for Amazing Moms!](https://hive0.wordbox.intela.io/fechris89/specialdeals) discount isn't available yet 🙁. You'll have to wait till next Mother's Day in March. In the meantime, you can look at our [other discounts](https://hive0.wordbox.intela.io/fechris89/specialdeals)!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_992",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_545"
+                },
+                {
+                  "value": "Mother's Day",
+                  "from_entity": "entity_19205"
+                }
+              ]
+            },
+            "next_step": "step_963"
+          },
+          {
+            "step": "step_963",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Our [Lovely Couples!](https://hive0.wordbox.intela.io/fechris89/specialdeals) special discount doesn't open till Valentine's Day, sorry 🙁. But, you can check out our other [special discounts](https://hive0.wordbox.intela.io/fechris89/specialdeals)!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_963",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_545"
+                },
+                {
+                  "value": "Valentine's Day",
+                  "from_entity": "entity_19205"
+                }
+              ]
+            },
+            "next_step": "step_851"
+          },
+          {
+            "step": "step_851",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Looking to purchase our unique birthday 🎈flowers for a lower price? See our [It's Your Birthday!](https://hive0.wordbox.intela.io/fechris89/specialdeals) special discount with the bouquets being 30% off! We just opened the deal on January 1st and is available for just two weeks in each month."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_851",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_545"
+                },
+                {
+                  "value": "Birthday",
+                  "from_entity": "entity_19205"
+                }
+              ]
+            },
+            "next_step": "step_345"
+          },
+          {
+            "step": "step_345",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "For other occasions, we have regular and periodic sales and deals; check them out [here](https://hive0.wordbox.intela.io/fechris89/specialdeals)!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_345",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_545"
+                },
+                {
+                  "value": "Other",
+                  "from_entity": "entity_19205"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Request for Sales, Discounts or Special Deals",
+        "action": "action_28633",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_28633_intent_6286"
+        },
+        "variables": [
+          {
+            "title": "Check out our [Christmas Cheer!](https://hive0.wordbox.intela.io",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_116",
+            "data_type": "any"
+          },
+          {
+            "title": "For other occasions, we have regular and periodic sales and deal",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_345",
+            "data_type": "any"
+          },
+          {
+            "title": "We periodically have sales, holiday discounts and special deals ",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_545",
+            "data_type": "any"
+          },
+          {
+            "title": "Looking to purchase our unique birthday 🎈flowers for a lower pr",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_851",
+            "data_type": "any"
+          },
+          {
+            "title": "Our [Lovely Couples!](https://hive0.wordbox.intela.io/fechris89/",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_963",
+            "data_type": "any"
+          },
+          {
+            "title": "Need special flowers to celebrate one of the happiest days of yo",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_985",
+            "data_type": "any"
+          },
+          {
+            "title": "Unfortunately, our [Flowers for Amazing Moms!](https://hive0.wor",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_992",
+            "data_type": "any"
+          }
+        ],
+        "launch_mode": "learning",
+        "next_action": "action_28616",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true,
+          "never_return": false
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_394",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Okay, but what kind do you want? There are line, mass, form and filler flowers available."
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Alright. What category are you requesting for? Line, mass, filler or form?"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Okay, then. What's the category you're looking to buy? Is it line, filler, mass or form?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "random",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Line flowers",
+                      "value": {
+                        "input": {
+                          "text": "Line flowers"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Mass flowers",
+                      "value": {
+                        "input": {
+                          "text": "Mass flowers"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Filler flowers",
+                      "value": {
+                        "input": {
+                          "text": "Filler flowers"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Form flowers",
+                      "value": {
+                        "input": {
+                          "text": "Form flowers"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Other",
+                      "value": {
+                        "input": {
+                          "text": "Other"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "I didn't catch that. Select a valid option:"
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_34797",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_394",
+            "next_step": "step_824"
+          },
+          {
+            "step": "step_824",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Take your pick of snapdragons, larkspurs, eucalyptus, foxgloves and stocks and more from [our catalog](https://hive0.wordbox.intela.io/fechris89/ourcatalog)! They can be as cheap as CAD 18.99 and as expensive as CAD 64!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "title": "Example: Snapdragons",
+                  "source": "https://thumbs.dreamstime.com/b/multicolored-flowers-snapdragon-blue-sky-background-close-up-164534586.jpg",
+                  "alt_text": "Snapdragons against the blue sky",
+                  "description": "",
+                  "response_type": "image"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_824",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_394"
+                },
+                {
+                  "value": "Line flowers",
+                  "from_entity": "entity_34797"
+                }
+              ]
+            },
+            "next_step": "step_124"
+          },
+          {
+            "step": "step_124",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Take your pick of snapdragons, larkspurs, eucalyptus, foxgloves and stocks and more from [our catalog](https://hive0.wordbox.intela.io/fechris89/ourcatalog)! They can be as cheap as CAD 18.99 and as expensive as CAD 64!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "title": "Example: Snapdragons",
+                  "source": "https://thumbs.dreamstime.com/b/multicolored-flowers-snapdragon-blue-sky-background-close-up-164534586.jpg",
+                  "alt_text": "Snapdragons against the blue sky",
+                  "description": "",
+                  "response_type": "image"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_124",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_394"
+                },
+                {
+                  "value": "Line flowers",
+                  "from_entity": "entity_34797"
+                }
+              ]
+            },
+            "next_step": "step_599"
+          },
+          {
+            "step": "step_599",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Here are some lovely options: dahlias, lisianthus, poppies, asters and cosmos from [our catalog](https://hive0.wordbox.intela.io/fechris89/ourcatalog) with prices ranging from CAD 24.99 to CAD 100."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "title": "Example: Dahlia",
+                  "source": "https://cdn.pixabay.com/photo/2016/09/03/18/42/dahlia-1642461_640.jpg",
+                  "alt_text": "Pink dahlia flower",
+                  "description": "",
+                  "response_type": "image"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_599",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_394"
+                },
+                {
+                  "value": "Mass flowers",
+                  "from_entity": "entity_34797"
+                }
+              ]
+            },
+            "next_step": "step_611"
+          },
+          {
+            "step": "step_611",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Choose between statice, amsonia, phlox, ageratum and celosia from [our catalog](https://hive0.wordbox.intela.io/fechris89/ourcatalog)! Prices can be as low as CAD $21.05 and as high as CAD 104.99!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "title": "Example: Celosia",
+                  "source": "https://media.istockphoto.com/id/1348675711/photo/day-of-the-dead-flower-close-up-cockscomb.jpg?s=612x612&w=0&k=20&c=aMM0ZPekRx9VskJECUeGF2lSt5cbsA9CVpSXdND1iTY=",
+                  "alt_text": "Red celosia",
+                  "description": "",
+                  "response_type": "image"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_611",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_394"
+                },
+                {
+                  "value": "Filler flowers",
+                  "from_entity": "entity_34797"
+                }
+              ]
+            },
+            "next_step": "step_233"
+          },
+          {
+            "step": "step_233",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Purchase some lovely daffodils, sweet peas, balloon flowers, freesia and nigella from [our catalog](https://hive0.wordbox.intela.io/fechris89/ourcatalog), with prices ranging from CAD 12.85 to CAD 100.66!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "title": "Example: Balloon Flowers",
+                  "source": "https://media.istockphoto.com/id/1263227526/photo/platycodon-grandiflorus-or-chinese-bellflower-in-a-garden.jpg?s=612x612&w=0&k=20&c=o-ju4-y6YWfH97vjRBXb9ak_5BXqVvx0nLma7W5Nh_Q=",
+                  "alt_text": "Balloon flowers in some greenery",
+                  "description": "",
+                  "response_type": "image"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_233",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_394"
+                },
+                {
+                  "value": "Form flowers",
+                  "from_entity": "entity_34797"
+                }
+              ]
+            },
+            "next_step": "step_793"
+          },
+          {
+            "step": "step_793",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Undecided? See [our catalog](https://hive0.wordbox.intela.io/fechris89/ourcatalog) for more options! Costs are as low as CAD 34.99 to as high as CAD 109.99!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_793",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_394"
+                },
+                {
+                  "value": "Other",
+                  "from_entity": "entity_34797"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Flower Purchasing",
+        "action": "action_13852",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_13852_intent_14825"
+        },
+        "variables": [
+          {
+            "title": "Take your pick of snapdragons, larkspurs, eucalyptus, foxgloves ",
+            "privacy": {
+              "enabled": true
+            },
+            "variable": "step_124",
+            "data_type": "any"
+          },
+          {
+            "title": "Purchase some lovely daffodils, sweet peas, balloon flowers, fre",
+            "privacy": {
+              "enabled": true
+            },
+            "variable": "step_233",
+            "data_type": "any"
+          },
+          {
+            "title": "Okay, but what kind do you want? There are line, mass, form and ",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_394",
+            "data_type": "any"
+          },
+          {
+            "title": "Here are some lovely options: dahlias, lisianthus, poppies, aste",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_599",
+            "data_type": "any"
+          },
+          {
+            "title": "Choose between statice, amsonia, phlox, ageratum and celosia fro",
+            "privacy": {
+              "enabled": true
+            },
+            "variable": "step_611",
+            "data_type": "any"
+          },
+          {
+            "title": "Undecided? See [our catalog](https://hive0.wordbox.intela.io/fec",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_793",
+            "data_type": "any"
+          },
+          {
+            "title": "Take your pick of snapdragons, larkspurs, eucalyptus, foxgloves ",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_824",
+            "data_type": "any"
+          }
+        ],
+        "launch_mode": "learning",
+        "next_action": "action_11990",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true,
+          "never_return": false
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_621",
+            "title": "Go to site",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Go [here](https://hive0.wordbox.intela.io/fechris89/ourcatalog) to purchase the flowers or bouquets you want!"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Click [here](https://hive0.wordbox.intela.io/fechris89/ourcatalog) to buy the flowers of your choice!"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "To make purchases, go [here](https://hive0.wordbox.intela.io/fechris89/ourcatalog) and choose the flower or bouquet you wish to buy!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "random"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_621"
+          }
+        ],
+        "title": "Site to Buy Flowers",
+        "action": "action_34926",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_34926_intent_1426"
+        },
+        "variables": [
+          {
+            "title": "Go to site",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_621",
+            "data_type": "any"
+          }
+        ],
+        "launch_mode": "learning",
+        "next_action": "action_28633",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true,
+          "never_return": false
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "digression_failure",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "Sorry I couldn't confirm if you wanted to return to previous topic, let me connect to an agent."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "digression_failure",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Failed to confirm topic return"
+                }
+              ]
+            },
+            "next_step": "step_001"
+          },
+          {
+            "step": "step_001",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "I'm afraid I don't understand. I can connect you to an agent."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_001",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Step validation failed"
+                }
+              ]
+            },
+            "next_step": "step_002"
+          },
+          {
+            "step": "step_002",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "Sorry I couldn't assist you. I will connect you to an agent right away."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_002",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Agent requested"
+                }
+              ]
+            },
+            "next_step": "step_003"
+          },
+          {
+            "step": "step_003",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "I am afraid I do not understand what you are asking, let me connect you to an agent."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_003",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "No action matches"
+                }
+              ]
+            },
+            "next_step": "step_004"
+          },
+          {
+            "step": "step_004",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "It seems this conversation would be best managed by a human agent. Let me connect you to one of our agents."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_004",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Danger word detected"
+                }
+              ]
+            },
+            "next_step": "step_005"
+          },
+          {
+            "step": "step_005",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "It seems this conversation would be best managed by a human agent. Let me connect you to one of our agents."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_005",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Profanity detected"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Fallback",
+        "action": "fallback",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "fallback_connect_to_agent"
+        },
+        "variables": [
+          {
+            "title": "Topic return failed",
+            "variable": "digression_failure",
+            "data_type": "any"
+          },
+          {
+            "title": "I'm afraid I don't understand. I can connect you to an agent.",
+            "variable": "step_001",
+            "data_type": "any"
+          },
+          {
+            "title": "Sorry I couldn't assist you. I will connect you to an agent righ",
+            "variable": "step_002",
+            "data_type": "any"
+          },
+          {
+            "title": "I am afraid I do not understand what you are asking, let me conn",
+            "variable": "step_003",
+            "data_type": "any"
+          },
+          {
+            "title": "It seems this conversation would be best managed",
+            "variable": "step_004",
+            "data_type": "any"
+          },
+          {
+            "title": "Profanity - It seems this conversation",
+            "variable": "step_005",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "run_always",
+        "disambiguation_opt_out": true
+      },
+      {
+        "steps": [
+          {
+            "step": "danger_word_detected",
+            "title": "Connect to agent",
+            "handlers": [],
+            "resolver": {
+              "type": "fallback"
+            },
+            "variable": "danger_word_detected_variable",
+            "condition": {
+              "entity": "danger_words"
+            },
+            "next_step": "profanity_detected"
+          },
+          {
+            "step": "profanity_detected",
+            "title": "Show warning",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Please use appropriate language when interacting with the assistant."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "max_hits",
+                "handler": "max_hits_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "max_hits": 2,
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "profanity_detected_variable",
+            "condition": {
+              "entity": "profane_words"
+            }
+          }
+        ],
+        "title": "Trigger word detected",
+        "action": "run_always",
+        "boosts": [],
+        "handlers": [],
+        "variables": [
+          {
+            "title": "Profanity detected",
+            "variable": "danger_word_detected_variable",
+            "data_type": "any"
+          },
+          {
+            "title": "Profane word detected",
+            "variable": "profanity_detected_variable",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "anything_else"
+      },
+      {
+        "steps": [
+          {
+            "step": "step_001",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Sorry, I don't understand 🙁. Please rephrase your question."
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "I'm struggling to understand you 🙁. Try rephrasing your question."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "random"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_001",
+            "condition": {
+              "lte": [
+                {
+                  "system_variable": "no_action_matches_count"
+                },
+                {
+                  "scalar": 3
+                }
+              ]
+            },
+            "next_step": "step_002"
+          },
+          {
+            "step": "step_002",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": ""
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "fallback",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_002_result_1"
+              }
+            },
+            "variable": "step_002",
+            "condition": {
+              "gt": [
+                {
+                  "system_variable": "no_action_matches_count"
+                },
+                {
+                  "scalar": 3
+                }
+              ]
+            }
+          }
+        ],
+        "title": "No action matches",
+        "action": "anything_else",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "expression": "anything_else"
+        },
+        "variables": [
+          {
+            "title": "Sorry, I don't understand 🙁. Please rephrase your question.",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_001",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_002",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_002_result_1",
+            "data_type": "any"
+          }
+        ],
+        "disambiguation_opt_out": true
+      },
+      {
+        "steps": [
+          {
+            "step": "step_912",
+            "title": "List of Available stores",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Here are our available stores. Pick the one you want!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Toronto",
+                      "value": {
+                        "input": {
+                          "text": "Toronto"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Montreal",
+                      "value": {
+                        "input": {
+                          "text": "Montreal"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Calgary",
+                      "value": {
+                        "input": {
+                          "text": "Calgary"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Vancouver",
+                      "value": {
+                        "input": {
+                          "text": "Vancouver"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "I didn't catch that. Select a valid option:"
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_45330",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_912",
+            "next_step": "step_491"
+          },
+          {
+            "step": "step_491",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Our Toronto store is open Monday to Saturday from 9 am until 6 pm, except statutory holidays."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_491",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_912"
+                },
+                {
+                  "value": "Toronto",
+                  "from_entity": "entity_45330"
+                }
+              ]
+            },
+            "next_step": "step_760"
+          },
+          {
+            "step": "step_760",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Would you also like the address?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": {
+                        "input": {
+                          "text": "Yes"
+                        }
+                      }
+                    },
+                    {
+                      "label": "No",
+                      "value": {
+                        "input": {
+                          "text": "No"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "I'm sorry, I did not catch that, please restate your response."
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-yes-no",
+              "max_tries": 3,
+              "response_collection_behavior": "always_ask"
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_760",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_912"
+                },
+                {
+                  "value": "Toronto",
+                  "from_entity": "entity_45330"
+                }
+              ]
+            },
+            "next_step": "step_484"
+          },
+          {
+            "step": "step_484",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Our Toronto store is located at 123 Warden Avenue."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_484",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_760"
+                },
+                {
+                  "scalar": "yes"
+                }
+              ]
+            },
+            "next_step": "step_938"
+          },
+          {
+            "step": "step_938",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "If you say so!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_938",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_760"
+                },
+                {
+                  "scalar": "no"
+                }
+              ]
+            },
+            "next_step": "step_854"
+          },
+          {
+            "step": "step_854",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Our Montreal store is open Monday to Friday from 9 am until 7 pm, except statutory holidays."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_854",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_912"
+                },
+                {
+                  "value": "Montreal",
+                  "from_entity": "entity_45330"
+                }
+              ]
+            },
+            "next_step": "step_696"
+          },
+          {
+            "step": "step_696",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Would you also like the address?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": {
+                        "input": {
+                          "text": "Yes"
+                        }
+                      }
+                    },
+                    {
+                      "label": "No",
+                      "value": {
+                        "input": {
+                          "text": "No"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "I'm sorry, I did not catch that, please restate your response."
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-yes-no",
+              "max_tries": 3,
+              "response_collection_behavior": "always_ask"
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_696",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_912"
+                },
+                {
+                  "value": "Montreal",
+                  "from_entity": "entity_45330"
+                }
+              ]
+            },
+            "next_step": "step_811"
+          },
+          {
+            "step": "step_811",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Our Montreal store is located at 100 Park Avenue."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_811",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_696"
+                },
+                {
+                  "scalar": "yes"
+                }
+              ]
+            },
+            "next_step": "step_792"
+          },
+          {
+            "step": "step_792",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "If you say so!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_792",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_696"
+                },
+                {
+                  "scalar": "no"
+                }
+              ]
+            },
+            "next_step": "step_595"
+          },
+          {
+            "step": "step_595",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Our Calgary store is open Monday to Friday from 9 am until 6 pm, except statutory holidays."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_595",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_912"
+                },
+                {
+                  "value": "Calgary",
+                  "from_entity": "entity_45330"
+                }
+              ]
+            },
+            "next_step": "step_561"
+          },
+          {
+            "step": "step_561",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Would you also like the address?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": {
+                        "input": {
+                          "text": "Yes"
+                        }
+                      }
+                    },
+                    {
+                      "label": "No",
+                      "value": {
+                        "input": {
+                          "text": "No"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "I'm sorry, I did not catch that, please restate your response."
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-yes-no",
+              "max_tries": 3,
+              "response_collection_behavior": "always_ask"
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_561",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_912"
+                },
+                {
+                  "value": "Calgary",
+                  "from_entity": "entity_45330"
+                }
+              ]
+            },
+            "next_step": "step_179"
+          },
+          {
+            "step": "step_179",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Our Calgary store is located on the second floor of the Chinook Mall at 6455 Macleod Trail."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_179",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_561"
+                },
+                {
+                  "scalar": "yes"
+                }
+              ]
+            },
+            "next_step": "step_831"
+          },
+          {
+            "step": "step_831",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "If you say so!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_831",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_561"
+                },
+                {
+                  "scalar": "no"
+                }
+              ]
+            },
+            "next_step": "step_920"
+          },
+          {
+            "step": "step_920",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Our Vancouver store is open Monday to Sunday from 10 am until 8:45 pm, except statutory holidays."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_920",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_912"
+                },
+                {
+                  "value": "Vancouver",
+                  "from_entity": "entity_45330"
+                }
+              ]
+            },
+            "next_step": "step_727"
+          },
+          {
+            "step": "step_727",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Would you also like the address?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": {
+                        "input": {
+                          "text": "Yes"
+                        }
+                      }
+                    },
+                    {
+                      "label": "No",
+                      "value": {
+                        "input": {
+                          "text": "No"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "I'm sorry, I did not catch that, please restate your response."
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-yes-no",
+              "max_tries": 3,
+              "response_collection_behavior": "always_ask"
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_727",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_912"
+                },
+                {
+                  "value": "Vancouver",
+                  "from_entity": "entity_45330"
+                }
+              ]
+            },
+            "next_step": "step_990"
+          },
+          {
+            "step": "step_990",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Our Vancouver store is located at 883 Hastings St."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_990",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_727"
+                },
+                {
+                  "scalar": "yes"
+                }
+              ]
+            },
+            "next_step": "step_952"
+          },
+          {
+            "step": "step_952",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "If you say so!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_952",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_727"
+                },
+                {
+                  "scalar": "no"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Request Store Hours",
+        "action": "action_18443",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_18443_intent_38743"
+        },
+        "variables": [
+          {
+            "title": "Our Calgary store is located on the second floor of the Chinook ",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_179",
+            "data_type": "any"
+          },
+          {
+            "title": "Our Toronto store is located at 123 Warden Avenue.",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_484",
+            "data_type": "any"
+          },
+          {
+            "title": "Our Toronto store is open Monday to Saturday from 9 am until 6 p",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_491",
+            "data_type": "any"
+          },
+          {
+            "title": "Would you also like the address?",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_561",
+            "data_type": "yes_no"
+          },
+          {
+            "title": "Our Calgary store is open Monday to Friday from 9 am until 6 pm,",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_595",
+            "data_type": "any"
+          },
+          {
+            "title": "Would you also like the address?",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_696",
+            "data_type": "yes_no"
+          },
+          {
+            "title": "Would you also like the address?",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_727",
+            "data_type": "yes_no"
+          },
+          {
+            "title": "Would you also like the address?",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_760",
+            "data_type": "yes_no"
+          },
+          {
+            "title": "If you say so!",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_792",
+            "data_type": "any"
+          },
+          {
+            "title": "Our Montreal store is located at 100 Park Avenue.",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_811",
+            "data_type": "any"
+          },
+          {
+            "title": "If you say so!",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_831",
+            "data_type": "any"
+          },
+          {
+            "title": "Our Montreal store is open Monday to Friday from 9 am until 7 pm",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_854",
+            "data_type": "any"
+          },
+          {
+            "title": "List of Available stores",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_912",
+            "data_type": "any"
+          },
+          {
+            "title": "Our Vancouver store is open Monday to Sunday from 10 am until 8:",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_920",
+            "data_type": "any"
+          },
+          {
+            "title": "If you say so!",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_938",
+            "data_type": "any"
+          },
+          {
+            "title": "If you say so!",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_952",
+            "data_type": "any"
+          },
+          {
+            "title": "Our Vancouver store is located at 883 Hastings St.",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_990",
+            "data_type": "any"
+          }
+        ],
+        "launch_mode": "learning",
+        "next_action": "action_18443-2",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true,
+          "never_return": false
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_001",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Hi there! I'm Rosa and I'm a chatbot. My job is to inform you about our store hours, locations, give flower recommendations, and help with purchases. How can I help you today?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_001"
+          }
+        ],
+        "title": "Greet customer",
+        "action": "welcome",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "expression": "welcome"
+        },
+        "variables": [
+          {
+            "title": "Hi there! I'm Rosa and I'm a chatbot. My job is to inform you ab",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_001",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_34926",
+        "disambiguation_opt_out": true
+      },
+      {
+        "steps": [
+          {
+            "step": "step_549",
+            "title": "Specify Occasion",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "What's the occasion? I need it so I would know what flowers to recommend."
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "For which occasion? I want to recommend special flowers for you."
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "May I know the occasion so I could suggest you flowers?"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Specify the occasion so I can suggest flowers for you."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "random",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Christmas",
+                      "value": {
+                        "input": {
+                          "text": "Christmas"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Birthday",
+                      "value": {
+                        "input": {
+                          "text": "Birthday"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Mother's Day",
+                      "value": {
+                        "input": {
+                          "text": "Mother's Day"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Valentine's Day",
+                      "value": {
+                        "input": {
+                          "text": "Valentine's Day"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Other",
+                      "value": {
+                        "input": {
+                          "text": "Other"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "I didn't catch that. Select a valid option:"
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_44664",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_549",
+            "next_step": "step_816"
+          },
+          {
+            "step": "step_816",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "I always go for an all-time classic: a beautiful Red Poinsettia, which costs CAD 39.99!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "title": "",
+                  "source": "https://images.unsplash.com/photo-1608569434733-b5366c217bd4?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cG9pbnNldHRpYXxlbnwwfHwwfHx8MA%3D%3D",
+                  "alt_text": "Red Poinsettia",
+                  "description": "",
+                  "response_type": "image"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_816",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_549"
+                },
+                {
+                  "value": "Christmas",
+                  "from_entity": "entity_44664"
+                }
+              ]
+            },
+            "next_step": "step_361"
+          },
+          {
+            "step": "step_361",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Opt for a fun bouquet of flowers, choosing a colorful one from <a href=\"https://example.org/catalog\">our catalog</a>! Costs range from CAD 26.66 to CAD 45!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "title": "Example from our catalog",
+                  "source": "https://freerangestock.com/sample/132730/colorful-flowers-.jpg",
+                  "alt_text": "Blue, pink and yellow flowers",
+                  "description": "",
+                  "response_type": "image"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_361",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_549"
+                },
+                {
+                  "value": "Birthday",
+                  "from_entity": "entity_44664"
+                }
+              ]
+            },
+            "next_step": "step_422"
+          },
+          {
+            "step": "step_422",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "You can never go wrong with a dozen red roses 🌹, costing CAD 105!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "title": "",
+                  "source": "https://t3.ftcdn.net/jpg/00/16/10/30/360_F_16103039_HxJj44DGv4PaffladU53UyQlfFZnXNpe.jpg",
+                  "alt_text": "Bouquet of roses in a vase",
+                  "description": "",
+                  "response_type": "image"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_422",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_549"
+                },
+                {
+                  "value": "Valentine's Day",
+                  "from_entity": "entity_44664"
+                }
+              ]
+            },
+            "next_step": "step_592"
+          },
+          {
+            "step": "step_592",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Moms are awesome 💪 and worth celebrating every day! Consider our <a href=\"https://example.org/mothers-day\">Mother's Day special bouquet</a> for CAD 50."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "title": "Example from our catalog",
+                  "source": "https://media.istockphoto.com/id/951105418/photo/very-nice-young-woman-holding-a-colourful-fresh-blossoming-flower-bouquet-of-different-sorts.jpg?s=612x612&w=0&k=20&c=emRNuMDnrdFVf1G4xLcZVAd_nwOlpJ43xaUyMtqB8z0=",
+                  "alt_text": "Woman holding a lovely bouquet of flowers",
+                  "description": "",
+                  "response_type": "image"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_592",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_549"
+                },
+                {
+                  "value": "Mother's Day",
+                  "from_entity": "entity_44664"
+                }
+              ]
+            },
+            "next_step": "step_578"
+          },
+          {
+            "step": "step_578",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "I'd recommend a beautiful mixed bouquet from <a href=\"https://example.org/catalog\">our catalog</a>. Costs are as low as CAD 34.99 to as high as CAD 109.99!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "title": "Example from our catalog",
+                  "source": "https://previews.123rf.com/images/miradrozdowski/miradrozdowski1404/miradrozdowski140400019/27831651-bouquet-of-colourful-flowers.jpg",
+                  "alt_text": "Mixed bouquet of flowers",
+                  "description": "",
+                  "response_type": "image"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_578",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_549"
+                },
+                {
+                  "value": "Other",
+                  "from_entity": "entity_44664"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Flower Recommendations",
+        "action": "action_11990",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_11990_intent_11264"
+        },
+        "variables": [
+          {
+            "title": "Opt for a fun bouquet of flowers, choosing a colorful one from <",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_361",
+            "data_type": "any"
+          },
+          {
+            "title": "You can never go wrong with a dozen red roses 🌹, costing CAD 10",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_422",
+            "data_type": "any"
+          },
+          {
+            "title": "Specify Occasion",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_549",
+            "data_type": "any"
+          },
+          {
+            "title": "I'd recommend a beautiful mixed bouquet from <a href=\"https://ex",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_578",
+            "data_type": "any"
+          },
+          {
+            "title": "Moms are awesome 💪 and worth celebrating every day! Consider ou",
+            "privacy": {
+              "enabled": true
+            },
+            "variable": "step_592",
+            "data_type": "any"
+          },
+          {
+            "title": "I always go for an all-time classic: a beautiful Red Poinsettia,",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_816",
+            "data_type": "any"
+          }
+        ],
+        "launch_mode": "learning",
+        "next_action": "action_18443",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true,
+          "never_return": false
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_541",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "You're welcome! Please let me know if you need anything else."
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "My pleasure! 😀"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "No problem! Let me know if there is anything else I can help with."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "random"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_541"
+          }
+        ],
+        "title": "Thank you",
+        "action": "action_18899",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_18899_intent_41532"
+        },
+        "variables": [
+          {
+            "title": "You're welcome! Please let me know if you need anything else.",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_541",
+            "data_type": "any"
+          }
+        ],
+        "launch_mode": "learning",
+        "next_action": "action_13852",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true,
+          "never_return": false
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_321",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Nice talking to you today! We would love to see you at our store 😀"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "We hope you visit our store! Have a nice day 😀"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Goodbye! We hope you come by our store!"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_321"
+          }
+        ],
+        "title": "Goodbye",
+        "action": "action_28616",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_28616_intent_6164"
+        },
+        "variables": [
+          {
+            "title": "Nice talking to you today! We would love to see you at our store",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_321",
+            "data_type": "any"
+          }
+        ],
+        "launch_mode": "learning",
+        "next_action": "action_18899",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true,
+          "never_return": false
+        },
+        "disambiguation_opt_out": false
+      }
+    ],
+    "intents": [
+      {
+        "intent": "fallback_connect_to_agent",
+        "examples": [
+          {
+            "text": "Call agent"
+          },
+          {
+            "text": "Agent help"
+          },
+          {
+            "text": "I would like to speak to a human"
+          },
+          {
+            "text": "Can I connect to an agent?"
+          },
+          {
+            "text": "I would like to speak to someone"
+          }
+        ],
+        "description": "Please transfer me to an agent"
+      },
+      {
+        "intent": "action_18443_intent_38743",
+        "examples": [
+          {
+            "text": "What are your store hours"
+          },
+          {
+            "text": "Request Store hours"
+          },
+          {
+            "text": "are you open on holidays"
+          },
+          {
+            "text": "is the store closed"
+          },
+          {
+            "text": "hours of operation"
+          },
+          {
+            "text": "what days are you open"
+          },
+          {
+            "text": "when are you open"
+          }
+        ]
+      },
+      {
+        "intent": "action_28633_intent_6286",
+        "examples": [
+          {
+            "text": "Will there be a sale"
+          },
+          {
+            "text": "Are there special deals"
+          },
+          {
+            "text": "I want to know when a sale will take place"
+          },
+          {
+            "text": "Any special deals"
+          },
+          {
+            "text": "Are there any discounts"
+          }
+        ]
+      },
+      {
+        "intent": "action_18899_intent_41532",
+        "examples": [
+          {
+            "text": "thanks"
+          },
+          {
+            "text": "tnx"
+          },
+          {
+            "text": "thnx"
+          },
+          {
+            "text": "Thanks a lot"
+          },
+          {
+            "text": "Thank you"
+          }
+        ]
+      },
+      {
+        "intent": "action_34926_intent_1426",
+        "examples": [
+          {
+            "text": "Where to buy flowers"
+          },
+          {
+            "text": "Site to buy flowers"
+          },
+          {
+            "text": "Redirect me to the site where I can purchase flowers"
+          },
+          {
+            "text": "How can I buy flowers"
+          },
+          {
+            "text": "Where can I buy flowers on your site"
+          },
+          {
+            "text": "Where to purchase bouquets on your site"
+          }
+        ]
+      },
+      {
+        "intent": "action_13852_intent_14825",
+        "examples": [
+          {
+            "text": "buying some flowers"
+          },
+          {
+            "text": "I want to buy flowers"
+          },
+          {
+            "text": "flowers to purchase"
+          },
+          {
+            "text": "Can I buy some flowers"
+          },
+          {
+            "text": "buy flowers"
+          },
+          {
+            "text": "flower purchase"
+          },
+          {
+            "text": "I would like to purchase some flowers"
+          }
+        ]
+      },
+      {
+        "intent": "action_18443_intent_38743-2",
+        "examples": [
+          {
+            "text": "Where is your store located"
+          },
+          {
+            "text": "where can I find your store"
+          },
+          {
+            "text": "I want to know the address of your store"
+          },
+          {
+            "text": "Where's the store"
+          },
+          {
+            "text": "store location"
+          },
+          {
+            "text": "Store address"
+          }
+        ]
+      },
+      {
+        "intent": "action_11990_intent_11264",
+        "examples": [
+          {
+            "text": "Flower suggestions for Christmas"
+          },
+          {
+            "text": "Options of flowers"
+          },
+          {
+            "text": "Flower choices"
+          },
+          {
+            "text": "flower suggestions"
+          },
+          {
+            "text": "I want flower recommendations"
+          }
+        ]
+      },
+      {
+        "intent": "action_28616_intent_6164",
+        "examples": [
+          {
+            "text": "bye"
+          },
+          {
+            "text": "c u l8er"
+          },
+          {
+            "text": "Goodbye"
+          },
+          {
+            "text": "bye bye"
+          },
+          {
+            "text": "See you"
+          },
+          {
+            "text": "Later!"
+          }
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "entity": "entity_19205",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Mother's Day",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Valentine's Day",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Birthday",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Other",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Christmas",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Wedding",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_34797",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Other",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Filler flowers",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Line flowers",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Mass flowers",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Form flowers",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_45330",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Montreal",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Vancouver",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Calgary",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Toronto",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_45330-2",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Calgary",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Vancouver",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Toronto",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Montreal",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "danger_words",
+        "values": [],
+        "fuzzy_match": false
+      },
+      {
+        "entity": "entity_44664",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Other",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Mother's Day",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Valentine's Day",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Christmas",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Birthday",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "profane_words",
+        "values": [],
+        "fuzzy_match": false
+      },
+      {
+        "entity": "sys-yes-no",
+        "values": []
+      }
+    ],
+    "metadata": {
+      "api_version": {
+        "major_version": "v2",
+        "minor_version": "2018-11-08"
+      },
+      "skill": {
+        "counts": {
+          "actions": 12,
+          "intents": 9,
+          "entities": 8,
+          "data_types": 0,
+          "collections": 0,
+          "global_variables": 0
+        }
+      }
+    },
+    "variables": [],
+    "data_types": [],
+    "collections": [],
+    "counterexamples": [],
+    "system_settings": {
+      "variable": {
+        "format": {
+          "time": {
+            "pattern": "short"
+          },
+          "currency": {
+            "fraction_digits": 2
+          }
+        }
+      },
+      "off_topic": {
+        "enabled": true
+      },
+      "auto_learn": {
+        "apply": true
+      },
+      "topic_switch": {
+        "enabled": true,
+        "messages": {
+          "enable_confirmation": true,
+          "confirmation_failure": {
+            "generic": [
+              {
+                "values": [
+                  {
+                    "text_expression": {
+                      "concat": [
+                        {
+                          "scalar": "I'm sorry, I did not catch that, please confirm."
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "response_type": "text",
+                "selection_policy": "sequential"
+              }
+            ]
+          },
+          "confirmation_request": {
+            "generic": [
+              {
+                "values": [
+                  {
+                    "text_expression": {
+                      "concat": [
+                        {
+                          "scalar": "Do you want to continue with the previous topic: "
+                        },
+                        {
+                          "system_variable": "digressed_from"
+                        },
+                        {
+                          "scalar": "?"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "response_type": "text",
+                "selection_policy": "sequential"
+              },
+              {
+                "options": [
+                  {
+                    "label": "Yes",
+                    "value": {
+                      "input": {
+                        "text": "Yes"
+                      }
+                    }
+                  },
+                  {
+                    "label": "No",
+                    "value": {
+                      "input": {
+                        "text": "No"
+                      }
+                    }
+                  }
+                ],
+                "response_type": "option",
+                "repeat_on_reprompt": true
+              }
+            ]
+          }
+        },
+        "max_tries": 3
+      },
+      "generative_ai": {
+        "slot_filling": {
+          "enabled": false
+        }
+      },
+      "disambiguation": {
+        "prompt": "Did you mean:",
+        "enabled": true,
+        "randomize": true,
+        "max_suggestions": 5,
+        "suggestion_text_policy": "title",
+        "none_of_the_above_prompt": "None of the above",
+        "use_connect_to_support_prompt": "Connect to support",
+        "single_answer_clarification_prompt": "Something else"
+      },
+      "spelling_auto_correct": true
+    },
+    "learning_opt_out": false,
+    "language": "en"
+  },
+  "description": "created for assistant 68665f35-7022-4042-aca1-106d5733c518",
+  "dialog_settings": {
+    "source_assistant": "83d4a983-bdf4-4e14-80f4-8657adf25eff"
+  },
+  "created": "2024-01-01T18:21:03.644Z",
+  "updated": "2024-01-01T18:21:03.644Z",
+  "snapshot": "4",
+  "assistant_id": "68665f35-7022-4042-aca1-106d5733c518",
+  "assistant_references": [
+    {
+      "name": "Flower Shop Assistant",
+      "assistant_id": "83d4a983-bdf4-4e14-80f4-8657adf25eff",
+      "skill_reference": "actions skill"
+    }
+  ]
+}
