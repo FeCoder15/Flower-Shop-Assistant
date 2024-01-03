@@ -32,3 +32,8 @@ Screenshot of the Home page
 License
 
 https://choosealicense.com/licenses/gpl-2.0/
+
+Badge
+
+https://img.shields.io/badge/build-chatbot?style=for-the-badge&logo=gitlab&logoColor=green&label=Chatbot&labelColor=abcdef&color=fedcba
+
