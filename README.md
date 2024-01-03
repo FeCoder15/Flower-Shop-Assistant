@@ -26,3 +26,9 @@ How to Install Rosa
 How to Use and Update Rosa
 
 On the left menu of the IBM watson Assistant page, you will find a list of features. If you don't how to use them, here's a tutorial: https://vimeo.com/711402016
+![image](https://github.com/FeCoder15/Flower-Shop-Assistant/assets/155546838/c891ce02-cc2f-4340-8955-e8e9b1418be3)
+Screenshot of the Home page
+
+License
+
+https://choosealicense.com/licenses/gpl-2.0/
