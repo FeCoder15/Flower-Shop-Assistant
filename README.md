@@ -1,4 +1,4 @@
-Flower Shop Virtual Assistant Rosa
+<b>Flower Shop Virtual Assistant Rosa</b>
 
 *Table of Contents*
 
